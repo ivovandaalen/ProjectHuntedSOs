@@ -1,0 +1,44 @@
+{
+  "players": [
+    {
+      "id": 1,
+      "name": "sjors",
+      "location": {
+        "lat": 5,
+        "long": 5
+      }
+    },
+    {
+      "id": 2,
+      "name": "sjimmie",
+      "location": {
+        "lat": 51.736696,
+        "long": 5.546491
+      }
+    },
+    {
+      "id": 3,
+      "name": "kees",
+      "location": {
+        "lat": 51.737484,
+        "long": 5.542192
+      }
+    },
+    {
+      "id": 4,
+      "name": "chefke",
+      "location": {
+        "lat": 51.736803,
+        "long": 5.544757
+      }
+    },
+    {
+      "id": 5,
+      "name": "jan",
+      "location": {
+        "lat": 51.736786,
+        "long": 5.544789
+      }
+    }
+  ]
+}
