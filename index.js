@@ -1,10 +1,15 @@
 var express = require('express');
 var app = express();
+const connectDB = require('./MongoDB/Connection');
 
-var routes = require('./routes.js');
+connectDB();
+var loot = require('./Routes/loot.js');
+var player = require('./Routes/player.js');
+var jail = require('./Routes/jail.js');
 
-//both index.js and things.js should be in same directory
 app.use(express.json())
-app.use('/', routes);
+app.use('/loot', loot);
+app.use('/player', player);
+app.use('/jail', jail);
 
 app.listen(process.env.PORT || 3000);
