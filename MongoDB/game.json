@@ -1,0 +1,133 @@
+{
+	"jail": {
+		"location": {
+			"latitude": 51.616953,
+			"longitude": 5.542467
+		}
+	},
+	"loot": [{
+			"_id": "605a2ae3dd600d1a70fdbd68",
+			"name": "ketting"
+		},
+		{
+			"_id": "605a2ae368f06ea0b5e560f7",
+			"name": "ring"
+		},
+		{
+			"_id": "605a2ae3c7375a60e24fdb5d",
+			"name": "kroon"
+		}
+	],
+	"players": [{
+			"_id": "605a2abedc4b8fbf0ef7beac",
+			"name": "Oconnor",
+			"role": "agent",
+			"arrested": false,
+			"location": {
+				"latitude": 51.617235,
+				"longitude": 5.541868
+			}
+		},
+		{
+			"_id": "605a2abee13c10cd90270ac7",
+			"name": "Cunningham",
+			"role": "agent",
+			"arrested": false,
+			"location": {
+				"latitude": 51.637426,
+				"longitude": 5.546499
+			}
+		},
+		{
+			"_id": "605a2abe7bc58141dc0c8cdc",
+			"name": "Higgins",
+			"role": "agent",
+			"arrested": false,
+			"location": {
+				"latitude": 51.613115,
+				"longitude": 5.540446
+			}
+		},
+		{
+			"_id": "605a2abe3fbc0719ed496fe9",
+			"name": "Sears",
+			"role": "agent",
+			"arrested": false,
+			"location": {
+				"latitude": 51.674516,
+				"longitude": 5.545956
+			}
+		},
+		{
+			"_id": "605a2abef1666432e15155e3",
+			"name": "Estrada",
+			"role": "agent",
+			"arrested": false,
+			"location": {
+				"latitude": 51.611423,
+				"longitude": 5.545039
+			}
+		},
+		{
+			"_id": "605a2ae3eb896d254cbcb0e1",
+			"name": "Oneill",
+			"role": "boef",
+			"arrested": false,
+			"location": {
+				"latitude": 51.608189,
+				"longitude": 5.545529
+			},
+			"loot": []
+		},
+		{
+			"_id": "605a2ae369597f246570c858",
+			"name": "Garner",
+			"role": "boef",
+			"arrested": false,
+			"location": {
+				"latitude": 51.66162,
+				"longitude": 5.545363
+			},
+			"loot": [{
+				"_id": "605a2afb963573041b19a981",
+				"name": "ketting"
+			}]
+		},
+		{
+			"_id": "605a2ae3c1dc7dd863ca5680",
+			"name": "Powell",
+			"role": "boef",
+			"arrested": false,
+			"location": {
+				"latitude": 51.690306,
+				"longitude": 5.548484
+			},
+			"loot": []
+		},
+		{
+			"_id": "605a2ae3d70cb7786fd495c3",
+			"name": "Cannon",
+			"role": "boef",
+			"arrested": false,
+			"location": {
+				"latitude": 51.654982,
+				"longitude": 5.543355
+			},
+			"loot": [{
+				"_id": "605a2afb76e7d29831c125ce",
+				"name": "kroon"
+			}]
+		},
+		{
+			"_id": "605a2ae3a207ac946aec1eea",
+			"name": "Wilkins",
+			"role": "boef",
+			"arrested": false,
+			"location": {
+				"latitude": 51.665587,
+				"longitude": 5.547331
+			},
+			"loot": []
+		}
+	]
+}
