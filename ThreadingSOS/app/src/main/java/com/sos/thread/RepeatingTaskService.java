@@ -1,24 +1,14 @@
 package com.sos.thread;
 
-import android.app.NotificationManager;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Binder;
 import android.os.IBinder;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -30,7 +20,7 @@ public class RepeatingTaskService extends Service {
     private final long DELAY = 200;
 
     private RequestQueue queue;
-    private ArrayList<RepeatingTask> repeatingTasks = new ArrayList<>();
+    private ArrayList<RepeatingTask> repeatingTasks;
 
     private AtomicBoolean working = new AtomicBoolean(true);
 
@@ -80,18 +70,20 @@ public class RepeatingTaskService extends Service {
            - should be 'URL + "player/" + id' */
        final String getArrestedUrl = URL + "player";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, getArrestedUrl,
-            response -> {
-                //Observable
-                task.notifyObservers(response.length());
-            }, error -> {
-                //Bad request :(
-            }
+        response -> {
+            //Observable
+            task.notifyObservers(response.length()  + " (count)");
+        }, error -> {
+            //Bad request :(
+            task.notifyObservers("Big oof.");
+        }
         );
         queue.add(stringRequest);
     }
 
     @Override
     public void onCreate() {
+        repeatingTasks = new ArrayList<>();
         new Thread(runnable).start();
         queue = Volley.newRequestQueue(this);
     }

@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        runOnUiThread(() -> Toast.makeText(MainActivity.this, "Observable update: " + o.toString() + " (count)", Toast.LENGTH_SHORT).show());
+        runOnUiThread(() -> Toast.makeText(MainActivity.this, "Observable update: " + o.toString() , Toast.LENGTH_SHORT).show());
     }
 
     // Clean service binding
