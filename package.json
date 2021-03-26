@@ -23,7 +23,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "hmr": "nodemon index.js",
     "nodemon": "npm run hmr",
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC"
