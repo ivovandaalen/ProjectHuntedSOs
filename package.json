@@ -21,14 +21,10 @@
   },
   "devDependencies": {},
   "scripts": {
-      "dev": "react-scripts start",
-      "start": "serve -s build",
-      "build": "react-scripts build",
-      "test": "react-scripts test --env=jsdom",
-      "eject": "react-scripts eject",
-      "heroku-postbuild": "npm run build",
-      "hmr": "nodemon index.js",
-      "nodemon": "npm run hmr"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "hmr": "nodemon index.js",
+    "nodemon": "npm run hmr",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC"
