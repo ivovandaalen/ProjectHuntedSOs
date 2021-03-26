@@ -8,13 +8,26 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.annotation.SuppressLint;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.example.hunted.repeatingtask.RepeatingTask;
+import com.example.hunted.repeatingtask.RepeatingTaskName;
+import com.example.hunted.repeatingtask.RepeatingTaskService;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Observable;
+import java.util.Observer;
 
-public class PoliceActivity extends AppCompatActivity {
+
+public class PoliceActivity extends AppCompatActivity implements Observer {
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
     private NavigationView navigationView;
@@ -23,6 +36,9 @@ public class PoliceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_police);
+
+        //TODO Remove if not used for Police.
+        //doBindService();
 
         //Set toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -38,6 +54,12 @@ public class PoliceActivity extends AppCompatActivity {
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         setupDrawerContent(navigationView);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        doUnbindService();
     }
 
     private void setupDrawerContent(NavigationView navigationView){
@@ -87,6 +109,7 @@ public class PoliceActivity extends AppCompatActivity {
         fragmentManager.beginTransaction().replace(R.id.mainContentPolice, fragment).commit();
     }
 
+    //region Service code
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -99,4 +122,41 @@ public class PoliceActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void update(Observable observable, Object o) {
+        runOnUiThread(() -> Toast.makeText(PoliceActivity.this, "Observable update: " + o.toString(), Toast.LENGTH_SHORT).show());
+    }
+
+    // Clean service binding
+    private boolean mShouldUnbind;
+    private RepeatingTaskService mBoundService;
+
+    private final ServiceConnection mConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            mBoundService = ((RepeatingTaskService.LocalBinder)service).getService();
+
+            //Add repeatingTask.
+            //RepeatingTask repeatingTask = new RepeatingTask(RepeatingTaskName.ENUM_NAME, MILLIS);
+            //repeatingTask.addObserver(PoliceActivity.this);
+            //mBoundService.addRepeatingTask(repeatingTask);
+        }
+
+        public void onServiceDisconnected(ComponentName className) {
+            mBoundService = null;
+        }
+    };
+
+    void doBindService() {
+        if (bindService(new Intent(PoliceActivity.this, RepeatingTaskService.class), mConnection, Context.BIND_AUTO_CREATE)) {
+            mShouldUnbind = true;
+        }
+    }
+
+    void doUnbindService() {
+        if (mShouldUnbind) {
+            unbindService(mConnection);
+            mShouldUnbind = false;
+        }
+    }
+    //endregion
 }
