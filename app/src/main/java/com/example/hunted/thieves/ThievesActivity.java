@@ -34,6 +34,8 @@ public class ThievesActivity extends AppCompatActivity implements Observer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thieves);
+
+        // Bind to RepeatingTaskService
         doBindService();
 
         //Set toolbar
@@ -131,7 +133,7 @@ public class ThievesActivity extends AppCompatActivity implements Observer {
         public void onServiceConnected(ComponentName className, IBinder service) {
             mBoundService = ((RepeatingTaskService.LocalBinder)service).getService();
 
-            //Add repeatingTask.
+            // Add task to the service.
             RepeatingTask repeatingTask = new RepeatingTask(RepeatingTaskName.CHECK_ARRESTED, 3000);
             repeatingTask.addObserver(ThievesActivity.this);
             mBoundService.addRepeatingTask(repeatingTask);

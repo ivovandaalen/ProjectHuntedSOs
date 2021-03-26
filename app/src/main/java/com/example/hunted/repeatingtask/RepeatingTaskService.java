@@ -66,7 +66,6 @@ public class RepeatingTaskService extends Service {
     // REPEATING TASK METHODS
 
     private void checkArrested(RepeatingTask task) {
-        System.out.println("Service triggered Task: " + task.getTask().toString());
         /*TODO API Call doesn't exist yet.
            - should be 'URL + "player/" + id' */
         final String getArrestedUrl = URL + "player";
