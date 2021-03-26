@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_locations"
+            android:icon="@drawable/ic_map"
+            android:title="Locaties"
+            android:checked="true"/>
+        <item
+            android:id="@+id/nav_arrest"
+            android:icon="@drawable/ic_judge_hammer"
+            android:title="Inrekenen" />
+    </group>
+</menu>
