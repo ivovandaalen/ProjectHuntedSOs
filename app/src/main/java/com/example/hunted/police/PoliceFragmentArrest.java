@@ -1,4 +1,4 @@
-package com.example.hunted;
+package com.example.hunted.police;
 
 import androidx.fragment.app.Fragment;
 

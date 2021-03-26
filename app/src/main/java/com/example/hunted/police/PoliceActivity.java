@@ -1,5 +1,6 @@
-package com.example.hunted;
+package com.example.hunted.police;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -7,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +18,7 @@ import android.os.IBinder;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.hunted.R;
 import com.example.hunted.repeatingtask.RepeatingTask;
 import com.example.hunted.repeatingtask.RepeatingTaskName;
 import com.example.hunted.repeatingtask.RepeatingTaskService;
@@ -24,7 +27,8 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.Observable;
 import java.util.Observer;
 
-public class ThievesActivity extends AppCompatActivity implements Observer {
+
+public class PoliceActivity extends AppCompatActivity implements Observer {
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
     private NavigationView navigationView;
@@ -32,20 +36,22 @@ public class ThievesActivity extends AppCompatActivity implements Observer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thieves);
-        doBindService();
+        setContentView(R.layout.activity_police);
+
+        //TODO Remove if not used for Police.
+        //doBindService();
 
         //Set toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setBackgroundColor(getResources().getColor(R.color.thieves));
+        toolbar.setBackgroundColor(getResources().getColor(R.color.police));
 
         //Set initial fragment
-        setFragment(new ThievesFragmentLocations());
+        setFragment(new PoliceFragmentLocations());
         setTitle("Locaties");
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_thieves);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_police);
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         setupDrawerContent(navigationView);
@@ -73,13 +79,13 @@ public class ThievesActivity extends AppCompatActivity implements Observer {
         Class fragmentClass;
         switch(menuItem.getItemId()) {
             case R.id.nav_locations:
-                fragmentClass = ThievesFragmentLocations.class;
+                fragmentClass = PoliceFragmentLocations.class;
                 break;
-            case R.id.nav_scanner:
-                fragmentClass = ThievesFragmentScanner.class;
+            case R.id.nav_arrest:
+                fragmentClass = PoliceFragmentArrest.class;
                 break;
             default:
-                fragmentClass = ThievesFragmentLocations.class;
+                fragmentClass = PoliceFragmentLocations.class;
         }
 
         try {
@@ -101,8 +107,10 @@ public class ThievesActivity extends AppCompatActivity implements Observer {
     private void setFragment(Fragment fragment){
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.mainContentThieves, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.mainContentPolice, fragment).commit();
     }
+
+    //region Service code
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -115,11 +123,9 @@ public class ThievesActivity extends AppCompatActivity implements Observer {
         return super.onOptionsItemSelected(item);
     }
 
-    //region Service code
-
     @Override
     public void update(Observable observable, Object o) {
-        //runOnUiThread(() -> Toast.makeText(ThievesActivity.this, "Observable update: " + o.toString(), Toast.LENGTH_SHORT).show());
+        runOnUiThread(() -> Toast.makeText(PoliceActivity.this, "Observable update: " + o.toString(), Toast.LENGTH_SHORT).show());
     }
 
     // Clean service binding
@@ -131,9 +137,9 @@ public class ThievesActivity extends AppCompatActivity implements Observer {
             mBoundService = ((RepeatingTaskService.LocalBinder)service).getService();
 
             //Add repeatingTask.
-            RepeatingTask repeatingTask = new RepeatingTask(RepeatingTaskName.CHECK_ARRESTED, 3000);
-            repeatingTask.addObserver(ThievesActivity.this);
-            mBoundService.addRepeatingTask(repeatingTask);
+            //RepeatingTask repeatingTask = new RepeatingTask(RepeatingTaskName.ENUM_NAME, MILLIS);
+            //repeatingTask.addObserver(PoliceActivity.this);
+            //mBoundService.addRepeatingTask(repeatingTask);
         }
 
         public void onServiceDisconnected(ComponentName className) {
@@ -142,7 +148,7 @@ public class ThievesActivity extends AppCompatActivity implements Observer {
     };
 
     void doBindService() {
-        if (bindService(new Intent(ThievesActivity.this, RepeatingTaskService.class), mConnection, Context.BIND_AUTO_CREATE)) {
+        if (bindService(new Intent(PoliceActivity.this, RepeatingTaskService.class), mConnection, Context.BIND_AUTO_CREATE)) {
             mShouldUnbind = true;
         }
     }
@@ -153,7 +159,5 @@ public class ThievesActivity extends AppCompatActivity implements Observer {
             mShouldUnbind = false;
         }
     }
-
     //endregion
-
 }

@@ -14,8 +14,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".ThievesActivity" />
-        <activity android:name=".PoliceActivity" />
+        <activity android:name=".thieves.ThievesActivity" />
+        <activity android:name=".police.PoliceActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

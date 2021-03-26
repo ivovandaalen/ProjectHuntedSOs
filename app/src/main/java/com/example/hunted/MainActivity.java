@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.hunted.police.PoliceActivity;
+import com.example.hunted.thieves.ThievesActivity;
+
 //First activity screen with police/thieves choice
 public class MainActivity extends AppCompatActivity {
     Button buttonPolice;
