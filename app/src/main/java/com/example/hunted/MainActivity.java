@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.hunted.police.PoliceActivity;
 import com.example.hunted.thieves.ThievesActivity;
 
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         buttonPolice = (Button) findViewById(R.id.button_police);
         buttonThieves = (Button) findViewById(R.id.button_thieves);
